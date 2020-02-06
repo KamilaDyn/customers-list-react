@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@import url("https://fonts.googleapis.com/css?family=Lato|Montserrat&display=swap");
+
+body {
+  background-color: #eee;
+  font-family: "Lato", "Montserrat", Georgia, "Times New Roman", sans-serif;
+}

@@ -1,0 +1,23 @@
+.label-container {
+  .label {
+    b {
+      letter-spacing: 0.5px;
+      font-size: 1rem;
+    }
+  }
+
+  .input,
+  .email {
+    height: 30px;
+    width: 250px;
+    padding: 6px;
+    font-size: 1.2rem;
+    margin: 3px 0;
+    border-collapse: collapse;
+    text-transform: capitalize;
+  }
+
+  .displayErrors .input:invalid {
+    border-color: red;
+  }
+}
