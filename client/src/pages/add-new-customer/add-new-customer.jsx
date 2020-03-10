@@ -3,24 +3,20 @@ import InitialState from "../../components/initial-state/initial.state";
 import axios from "axios";
 import Form from "../../components/form/form";
 
-import "./add-new-customer.scss";
+import "./add-new-customer.css";
 
 class AddCustomer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      InitialState,
-      displayErrors: false
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
+  state = {
+    InitialState,
+    displayErrors: false
+  };
 
-  handleChange(e) {
+  handleChange = e => {
     e.preventDefault();
     const name = e.target.name;
     const value = e.target.value;
     this.setState({ [name]: value });
-  }
+  };
 
   addCustomer(newCustomer) {
     axios

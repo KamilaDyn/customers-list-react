@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPrint } from "@fortawesome/free-solid-svg-icons";
 
-import "./print-button.scss";
+import "./print-button.css";
 
 class PrintButton extends Component {
   constructor() {
@@ -57,11 +57,11 @@ class PrintButton extends Component {
   }
   render() {
     return (
-      <div className="print-button-container">
+      <>
         <button className="print-button" value="click" onClick={this.printDiv}>
           <FontAwesomeIcon className="print-icon" icon={faPrint} /> Print
         </button>
-      </div>
+      </>
     );
   }
 }

@@ -8,4 +8,5 @@
 body {
   background-color: #eee;
   font-family: "Lato", "Montserrat", Georgia, "Times New Roman", sans-serif;
+  height: 100vh;
 }

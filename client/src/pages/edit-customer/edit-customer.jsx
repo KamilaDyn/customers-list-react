@@ -1,18 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Form from "../../components/form/form";
-import InitialState from "../../components/initial-state/initial.state";
 
-import "./edit-customer.scss";
+import "./edit-customer.css";
 
 class EditCustomer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      displayErrors: false
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
+  state = {
+    displayErrors: false
+  };
 
   componentDidMount() {
     this.getCustomer();
@@ -55,11 +50,11 @@ class EditCustomer extends Component {
       });
   }
 
-  handleChange(e) {
+  handleChange = e => {
     const name = e.target.name;
     const value = e.target.value;
     this.setState({ [name]: value });
-  }
+  };
 
   editCustomer(newCustomer) {
     axios

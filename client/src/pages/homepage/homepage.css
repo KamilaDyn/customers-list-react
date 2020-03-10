@@ -1,0 +1,165 @@
+.button-container {
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin: 20px 0;
+  padding-right: 50px;
+}
+
+.home-page {
+  margin: 0 auto;
+}
+
+.home-page .table {
+  width: 100%;
+  max-width: 1700px;
+  border-collapse: collapse;
+  margin: 20px auto 50px auto;
+}
+
+.home-page .table .desktop {
+  display: none;
+}
+
+.home-page th {
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+}
+
+.home-page td,
+.home-page th {
+  padding: 6px;
+  border: 0.5px solid #ccc;
+  text-align: left;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.home-page th,
+.home-page td {
+  text-align: center;
+}
+
+.home-page td:nth-of-type(3),
+.home-page th:nth-last-of-type(3) {
+  max-width: 150px;
+}
+
+.home-page .email {
+  overflow-wrap: break-word;
+  max-width: 100px;
+}
+
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+  .home-page .table .mobile {
+    display: block;
+  }
+  .home-page .table .desktop {
+    display: none;
+  }
+  .home-page table,
+  .home-page thead,
+  .home-page tbody,
+  .home-page th,
+  .home-page td,
+  .home-page tr {
+    display: block;
+  }
+  .home-page thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  .home-page tr {
+    margin: 0 0 1rem 0;
+  }
+  .home-page tr:nth-child(even) {
+    background: #ddd;
+  }
+  .home-page th {
+    text-align: left;
+  }
+  .home-page td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+  }
+  .home-page th,
+  .home-page td {
+    font-size: 16px;
+  }
+  .home-page td:before {
+    position: absolute;
+    top: 0;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+  .home-page .email {
+    overflow-wrap: normal;
+  }
+  .home-page td:nth-of-type(1):before {
+    content: "First name";
+  }
+  .home-page td:nth-of-type(2):before {
+    content: "Last name";
+  }
+  .home-page td:nth-of-type(3):before {
+    content: "Phone";
+  }
+  .home-page td:nth-of-type(4):before {
+    content: "Email";
+  }
+  .home-page td:nth-of-type(5):before {
+    content: "Shipping address";
+  }
+  .home-page td:nth-of-type(6):before {
+    content: "Delivery address";
+  }
+}
+
+@media (min-width: 1200px) {
+  .home-page .table .mobile {
+    display: none;
+  }
+  .home-page .table th,
+  .home-page .table td {
+    padding: 2px;
+    font-size: 14px;
+  }
+  .home-page .table .desktop-thead {
+    display: table-header-group;
+  }
+  .home-page .table .desktop-row {
+    display: table-row;
+  }
+  .home-page .email {
+    max-width: 250px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .home-page td,
+  .home-page th {
+    padding: 6px;
+    font-size: 16px;
+    font-weight: 14px;
+  }
+  .home-page td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+  }
+  .home-page .email {
+    max-width: 300px;
+  }
+}
+/*# sourceMappingURL=homepage.css.map */

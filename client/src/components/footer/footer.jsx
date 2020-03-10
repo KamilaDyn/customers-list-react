@@ -1,11 +1,9 @@
 import React from "react";
-import "./footer.scss";
+import "./footer.css";
 
 const Footer = () => (
   <div className="footer-container">
-    <header className="header">
-      <p> &copy;Kamila Dynysiuk</p>
-    </header>
+    <p> &copy;Kamila Dynysiuk</p>
   </div>
 );
 

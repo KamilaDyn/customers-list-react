@@ -3,15 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
-import "./delete-button.scss";
+import "./delete-button.css";
 class DeleteButton extends Component {
-  constructor(props) {
-    super(props);
-    this.onDelete = this.onDelete.bind(this);
-  }
-
-  onDelete() {
-    const contactId = this.props.customer._id;
+  onDelete = props => {
+    const contactId = props.customer._id;
     axios
       .delete(`api/customers/${contactId}`)
       // .then(response => console.log(response))
@@ -22,7 +17,7 @@ class DeleteButton extends Component {
 
     let element = document.getElementById(contactId);
     element.remove();
-  }
+  };
   render() {
     return (
       <button

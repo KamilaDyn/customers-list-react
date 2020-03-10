@@ -7,9 +7,10 @@
   font-size: 1rem;
   cursor: pointer;
   border-radius: 5px;
-
-  .print-icon {
-    margin-right: 10px;
-    font-size: 1.1rem;
-  }
 }
+
+.print-button .print-icon {
+  margin-right: 10px;
+  font-size: 1.1rem;
+}
+/*# sourceMappingURL=print-button.css.map */

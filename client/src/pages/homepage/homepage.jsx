@@ -5,21 +5,18 @@ import SearchInput from "../../components/search-input/search-input";
 import PrintButton from "../../components/print-button/print-button";
 import AddButton from "../../components/addButton/addButton";
 
-import "./homepage.scss";
+import "./homepage.css";
 
 class HomePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      customers: [],
-      search: ""
-    };
-    this.handleSearch = this.handleSearch.bind(this);
-  }
-  handleSearch(e) {
+  state = {
+    customers: [],
+    search: ""
+  };
+
+  handleSearch = e => {
     this.setState({ search: e.target.value.substr(0, 20) });
     console.log("works");
-  }
+  };
   componentDidMount() {
     this.getCustomers();
   }
