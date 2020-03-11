@@ -3,7 +3,7 @@ you can have quick look at https://customers-list-react.herokuapp.com/
 
 This react app is connected with MongoDB.
 
-![react-list](https://media.giphy.com/media/QvpezHL95ajynXYC4W/source.mp4)
+![react-list](https://media.giphy.com/media/QvpezHL95ajynXYC4W/giphy.gif)
 
 Install dependencies for server
 
