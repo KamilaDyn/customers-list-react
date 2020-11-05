@@ -1,6 +1,9 @@
-App created in REACT, just for some practise use react.
-you can have quick look at https://customers-list-react.herokuapp.com/
 
+
+## See live
+
+
+## <a href="https://customers-list-react.herokuapp.com/">LIVE VIEW</a>
 This react app is connected with MongoDB.
 
 ![react-list](https://media.giphy.com/media/QvpezHL95ajynXYC4W/giphy.gif)
