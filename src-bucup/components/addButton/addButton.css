@@ -1,0 +1,20 @@
+.add-button-container {
+  margin-right: 20px;
+}
+
+.add-button-container .add-button {
+  min-width: 100px;
+  height: 30px;
+  color: white;
+  background-color: #222;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.add-button-container .add-button .icon-plus {
+  margin-right: 10px;
+  font-size: 1.1rem;
+}
+/*# sourceMappingURL=addButton.css.map */

@@ -1,36 +1,34 @@
 const express = require("express");
-
 const mongoose = require("mongoose");
+const Router = require("./routes/api/customers");
+const cors = require("cors");
 const bodyParser = require("body-parser");
-
-const customers = require("./routes/api/customers");
-require("dotenv").config();
-console.log(process.env);
+const port = process.env.PORT || 5000;
 
 const app = express();
-const path = require("path");
-var cors = require("cors");
 
+app.use(express.json());
+app.use(Router);
 app.use(cors());
-
-app.options("*", cors());
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const db = require("./config/keys").mongoURI;
-//conect to mongo
-mongoose
-  .connect(db, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true
-  })
-  .then(() => console.log("MongoDB connected..."))
-  .catch(error => console.log(error));
+const itemsRouter = require("./routes/api/customers");
 
-app.use("/api/customers", customers);
+mongoose
+  .connect(
+    "mongodb+srv://kamila:nsKtx4bZLRW03YWB@contacts.770un.mongodb.net/?retryWrites=true&w=majority" ||
+      "mongodb://127.0.0.1:27017",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
+  .then(() => console.log("MongoDB connected..."))
+  .catch((error) => console.log(error));
+// API routes
+
+app.use("/api/customers", itemsRouter);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
@@ -38,6 +36,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-const port = process.env.PORT || 5000;
-
-app.listen(port, () => console.log(`server started at port ${port}`));
+// // Start the server
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
+});

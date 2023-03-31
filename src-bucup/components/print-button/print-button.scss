@@ -1,0 +1,15 @@
+.print-button {
+  width: 100px;
+  height: 30px;
+  color: white;
+  background-color: #222;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+
+  .print-icon {
+    margin-right: 10px;
+    font-size: 1.1rem;
+  }
+}

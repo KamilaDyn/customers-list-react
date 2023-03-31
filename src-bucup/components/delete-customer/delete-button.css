@@ -1,0 +1,16 @@
+.delete-button {
+  padding: 3px;
+  color: red;
+  background-color: #eee;
+  border: 1 solid #ccc;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 5px 0;
+}
+
+.delete-button .icon-trash {
+  margin-right: 10px;
+  font-size: 0.9rem;
+  color: red;
+}
+/*# sourceMappingURL=delete-button.css.map */
