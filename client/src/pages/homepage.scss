@@ -1,17 +1,31 @@
+@import "../commons/variable.scss";
+
+.wrapper {
+  margin-top: 50px;
+  padding-bottom: 100px;
+  padding-inline: 50px;
+}
 .button-container {
   width: 100vw;
-  display: flex;
-  justify-content: flex-end;
+  flex-direction: row;
+  justify-content: flex-start;
   margin: 20px 0;
   padding-right: 50px;
+
+  > button {
+    margin-inline: 10px;
+  }
 }
+
 .home-page {
-  margin: 0 auto;
+  width: 100%;
+  .search {
+    max-width: 400px;
+  }
   .table {
-    width: 100%;
     max-width: 1700px;
     border-collapse: collapse;
-    margin: 20px auto 50px auto;
+    margin: 50px auto 50px auto;
     .desktop {
       display: none;
     }
@@ -19,7 +33,7 @@
 
   th {
     background-color: #333;
-    color: white;
+    color: #111;
     font-weight: bold;
   }
 
@@ -64,7 +78,11 @@
     tr {
       display: block;
     }
-
+    table {
+      td {
+        padding-block: 1.5rem;
+      }
+    }
     thead tr {
       position: absolute;
       top: -9999px;
@@ -74,8 +92,8 @@
       margin: 0 0 1rem 0;
     }
 
-    tr:nth-child(even) {
-      background: #ddd;
+    tr:nth-child(2n + 1) {
+      background: var(--color-gray100);
     }
 
     th {
@@ -83,7 +101,7 @@
     }
     td {
       border: none;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid var(--color-gray300);
       position: relative;
       padding-left: 50%;
       text-align: left;
@@ -129,10 +147,28 @@
       .mobile {
         display: none;
       }
+      thead {
+        background-color: var(--color-black1);
+        th {
+          color: var(--color-white);
+          height: 2rem;
+          line-height: 2rem;
+        }
+      }
+      tbody {
+        tr:nth-child(2n + 1) {
+          background-color: var(--color-gray100);
+        }
+        tr:nth-child(4n + 1) {
+          background-color: var(--color-gray300);
+        }
+      }
+
       th,
       td {
-        padding: 2px;
+        padding: 2px 6px;
         font-size: 14px;
+        vertical-align: middle;
       }
       .desktop-thead {
         display: table-header-group;
@@ -149,7 +185,7 @@
   @media (min-width: 1400px) {
     td,
     th {
-      padding: 6px;
+      padding: 4px 10px;
       font-size: 16px;
       font-weight: 14px;
     }

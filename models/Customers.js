@@ -73,4 +73,4 @@ const CustomerSchema = new Schema({
   },
 });
 
-module.exports = Customer = mongoose.model("customers", CustomerSchema);
+module.exports = Customer = mongoose.model("items", CustomerSchema);

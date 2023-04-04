@@ -1,25 +1,18 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-
-import Header from "./components/header/header";
-import HomePage from "./pages/homepage/homepage";
-import AddNewCustomer from "./pages/add-new-customer/add-new-customer";
-import EditCustomer from "./pages/edit-customer/edit-customer";
-import Footer from "./components/footer/footer";
 import "./App.css";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
+import HomePage from "./pages/HomePage";
 
 const App = () => (
-  <div className="App">
-    <Header />
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/add" component={AddNewCustomer} />
-        <Route path="/edit/:id" component={EditCustomer} />
-      </Switch>
-    </BrowserRouter>
-    <Footer />
-  </div>
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      {/* <Route exact path="/items/add" component={AddCustomer} />
+      <Route exact path="/items/:id" component={CustomerDetails} />
+      <Route exact path="/items/edit/:id" component={EditCustomer} /> */}
+    </Routes>
+  </BrowserRouter>
 );
 
 export default App;

@@ -6,7 +6,7 @@
 @import url("https://fonts.googleapis.com/css?family=Lato|Montserrat&display=swap");
 
 body {
-  background-color: #eee;
   font-family: "Lato", "Montserrat", Georgia, "Times New Roman", sans-serif;
   height: 100vh;
+  background-color: #40513b;
 }
