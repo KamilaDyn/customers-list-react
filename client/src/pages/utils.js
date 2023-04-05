@@ -12,8 +12,11 @@ export function useHomePage() {
   async function getCustomer() {
     await axios
       .get("http://localhost:5000/api/customers")
+      // .then((resp) => resp.json())
       .then((response) => {
-        if (response.data) {
+        console.log(response);
+        if (response.status === 200) {
+          // setCustomers(response.data);
           setCustomers(response.data);
         }
       })
@@ -27,8 +30,18 @@ export function useHomePage() {
     );
 
   useEffect(() => {
+    // axios
+    //   .get("http://localhost:5000/api/customers")
+    //   // .then((resp) => resp.json())
+    //   .then((response) => {
+    //     console.log(response);
+    //     if (response.status === 200) {
+    //       setCustomers(response.data);
+    //     }
+    //   })
+    //   .catch((error) => console.log(error));
     getCustomer();
   }, []);
 
-  return { customers, handleSearch, filteredCustomers };
+  return { customers, handleSearch, filteredCustomers, getCustomer };
 }

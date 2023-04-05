@@ -7,7 +7,6 @@ const Customer = require("../../models/Customers");
 router.get("/", async (req, res) => {
   try {
     const items = await Customer.find().sort({ date: -1 });
-    console.log(items);
     res.json(items);
   } catch (err) {
     res.status(500).send({ error: err.message });
@@ -49,11 +48,18 @@ router.put("/:id", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
-  Customer.findById({ _id: req.params.id })
-    .then((customer) =>
-      customer.remove().then(() => res.json({ status: "success" }))
-    )
+  console.log(req.params.id, Customer);
+  Customer.deleteOne({ _id: req.params.id })
+    .then((response) => res.json({ status: "success" }))
     .catch((error) => res.status(404).json({ status: false }));
+  // Customer.findById({ _id: req.params.id })
+  //   .then((customer) =>
+  //     customer.remove().then(() => res.json({ status: "success" }))
+  //   )
+  //   .catch((error) => {
+  //     console.log(error);
+  //     return res.status(404).json({ status: false });
+  //   });
 });
 
 module.exports = router;

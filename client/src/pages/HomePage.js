@@ -1,22 +1,40 @@
-import { Button, Container, InputGroup, Form } from "react-bootstrap";
-import "./homepage.scss";
+import { Button, InputGroup, Form, Spinner } from "react-bootstrap";
 import { useHomePage } from "./utils";
 import { CustomerItem } from "../components";
+
+function CustomeThead({ children, colSpan }) {
+  return (
+    <th
+      colSpan={colSpan}
+      className="px-3 py-3 text-xs font-semibold tracking-wide text-center text-white	 font-bold text-left text-gray-500 uppercase border-r border-b"
+    >
+      {children}
+    </th>
+  );
+}
+function SecondThead({ children }) {
+  return (
+    <th className="px-2 py-3 text-xs  font-bold text-left text-white text-gray-500 uppercase border-r border-b">
+      {children}
+    </th>
+  );
+}
 
 const HomePage = () => {
   const { filteredCustomers, handleSearch } = useHomePage();
 
-  const customerItems = filteredCustomers?.map((customer, i) => {
-    return <CustomerItem key={customer._id} customer={customer} />;
-  });
+  const customerItems =
+    filteredCustomers &&
+    filteredCustomers?.map((customer, i) => {
+      return <CustomerItem key={customer._id} customer={customer} />;
+    });
   return (
-    <div className="home-page wrapper">
-      <div className="button-container">
-        <Button>Add user</Button>
+    <div className="min-w-full p-20 mt-6">
+      <div>
+        <Button className="mr-2">Add user</Button>
         <Button>Print column</Button>
       </div>
-
-      <InputGroup className="my-3 search">
+      <InputGroup className="max-w-xl mt-4">
         <InputGroup.Text id="search">
           <i className="fa fa-search" />
         </InputGroup.Text>
@@ -27,53 +45,100 @@ const HomePage = () => {
           onChange={handleSearch}
         />
       </InputGroup>
-      <div>
-        <table id="table" className="table">
-          <thead className="desktop desktop-thead">
-            <tr className="details-row">
-              <th colSpan="2">Name</th>
-              <th colSpan="2">Phone</th>
-              <th rowSpan="2">Email</th>
-              <th colSpan="5">Billing address</th>
-              <th colSpan="5">Delivery address</th>
-              <th colSpan="2" className="not-print">
-                Actions
-              </th>
-            </tr>
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>phone 1</th>
-              <th>phone 2</th>
-              <th>street</th>
-              <th>postcode</th>
-              <th>city</th>
-              <th>state</th>
-              <th>country</th>
-              <th>street</th>
-              <th>postcode</th>
-              <th>city</th>
-              <th>state</th>
-              <th>country</th>
-              <th className="not-print">edit</th>
-              <th className="not-print">delete</th>
-            </tr>
-          </thead>
-          <thead className="mobile not-print">
-            <tr className="details-row">
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Phone</th>
-              <th className="email">Email</th>
-              <th>Billing address</th>
-              <th>Delivery address</th>
-              <th className="not-print">Actions</th>
-            </tr>
-          </thead>
-          {/* <tbody>{customerItems}</tbody> */}
-          <tbody>{customerItems}</tbody>
-        </table>
+      <div className="flex flex-col mt-8">
+        <div className="overflow-x-auto">
+          <div className=" w-full inline-block align-middle">
+            <div className="overflow-auto border rounded-lg shadow hidden lg:block">
+              <table
+                id="table"
+                className="min-w-full border-b-2 divide-y divide-gray-700"
+              >
+                <thead className="bg-gray-700">
+                  <tr className="details-row">
+                    <CustomeThead colSpan="2">Name</CustomeThead>
+                    <CustomeThead colSpan="2">Phone</CustomeThead>
+                    <th
+                      rowSpan="2"
+                      className="px-3 py-3 text-xs text-white font-semibold tracking-wide text-center font-bold text-left text-gray-500 uppercase border-r border-b"
+                    >
+                      Email
+                    </th>
+                    <CustomeThead colSpan="5">Billing Address</CustomeThead>
+                    <CustomeThead colSpan="5">Delivery address</CustomeThead>
+                    <CustomeThead colSpan="2">Actions</CustomeThead>
+                  </tr>
+                  <tr>
+                    <SecondThead>First Name</SecondThead>
+                    <SecondThead>Last Name</SecondThead>
+                    <SecondThead>phone 1</SecondThead>
+                    <SecondThead>phone 2</SecondThead>
+                    <SecondThead>street</SecondThead>
+                    <SecondThead>postcode</SecondThead>
+                    <SecondThead>city</SecondThead>
+                    <SecondThead>state</SecondThead>
+                    <SecondThead>country</SecondThead>
+                    <SecondThead>street</SecondThead>
+                    <SecondThead>postcode</SecondThead>
+                    <SecondThead>city</SecondThead>
+                    <SecondThead>state</SecondThead>
+                    <SecondThead>country</SecondThead>
+                    <th className="not-print px-2 py-1 text-xs text-white font-bold text-left text-gray-500 uppercase border-r border-b">
+                      edit
+                    </th>
+                    <th className="not-print px-2 py-1 text-xs text-white font-bold text-left text-gray-500 uppercase border-r border-b">
+                      delete
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-300 ">
+                  {customerItems}
+                </tbody>
+              </table>
+            </div>
+            <div className="grid grid-ols-1 gap-4 lg:hidden">
+              {filteredCustomers &&
+                filteredCustomers.map((customer) => (
+                  <div
+                    key={customer._id}
+                    className="bg-white space-y-3 p-4 rounded-lg shadow m-2"
+                  >
+                    <div className="flex items-center space-x-2 text-sm">
+                      <div className="text-blue-500 font-bold">
+                        {customer.first_name} {customer.second_name}
+                      </div>
+                      <div className="text-gray-500">
+                        <span className="font-bold"> Mail: </span>
+                        {customer.email}
+                      </div>
+                      <div className="text-gray-500">
+                        <span className="font-bold"> Phone: </span>
+                        {customer.mobile_phone}{" "}
+                        {customer.work_phone && `/  ${customer.work_phone}`}
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-2 text-sm">
+                      <div className="text-md font-bold">Billing Address:</div>
+                      <div>
+                        {customer.billing_street} street,{" "}
+                        {customer.billing_postcode} {customer.billing_city},{" "}
+                        {customer.billing_state} {customer.billing_country}
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-2 text-sm">
+                      <div className="text-md font-bold">Shipping Address:</div>
+                      <div>
+                        {customer.shipping_street} street,{" "}
+                        {customer.shipping_postcode} {customer.shipping_city},{" "}
+                        {customer.shipping_state} {customer.shipping_country}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        </div>
       </div>
+      {/* <Spinner animation="border" role="status" className="sm:hidden" /> */}
     </div>
   );
 };

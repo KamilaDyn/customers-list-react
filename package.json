@@ -15,6 +15,7 @@
   "author": "Kamila Dynysiuk",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^8.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.17.1",
