@@ -1,7 +1,6 @@
 import axios from "axios";
-import { useHomePage } from "../../pages//utils";
-export function useCustomerItem() {
-  const { customers } = useHomePage();
+
+export function useDeleteItem() {
   function onDelete(id) {
     axios
       .delete(`http://localhost:5000/api/customers/${id}`)
@@ -9,7 +8,6 @@ export function useCustomerItem() {
         if (response.status === 200) {
           const element = document.getElementById(id);
           element.remove();
-          //   getCustomer();
         } else {
           console.warn(response.status);
         }

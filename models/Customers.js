@@ -7,7 +7,7 @@ const CustomerSchema = new Schema({
     type: String,
     required: true,
   },
-  last_name: {
+  second_name: {
     type: String,
     required: true,
   },
@@ -15,11 +15,11 @@ const CustomerSchema = new Schema({
     type: String,
     required: true,
   },
-  cell_phone: {
+  mobile_phone: {
     type: Number,
     required: true,
   },
-  phone: {
+  work_phone: {
     type: Number,
     required: false,
   },
@@ -31,7 +31,7 @@ const CustomerSchema = new Schema({
     type: String,
     required: true,
   },
-  shipping_postcode: {
+  shipping_zipcode: {
     type: String,
     required: true,
   },
@@ -55,7 +55,7 @@ const CustomerSchema = new Schema({
     type: String,
     required: true,
   },
-  billing_postcode: {
+  billing_zipcode: {
     type: String,
     required: true,
   },

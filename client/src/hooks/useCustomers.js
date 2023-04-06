@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export function useHomePage() {
+export function useCustomers() {
   const [customers, setCustomers] = useState([]);
   const [searchCustomer, setSearchCustomer] = useState("");
   function handleSearch(e) {

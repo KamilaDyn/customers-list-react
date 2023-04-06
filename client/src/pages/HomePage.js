@@ -1,6 +1,7 @@
 import { Button, InputGroup, Form, Spinner } from "react-bootstrap";
-import { useHomePage } from "./utils";
+import { useCustomers } from "../hooks/useCustomers";
 import { CustomerItem } from "../components";
+import { useNavigate } from "react-router-dom";
 
 function CustomeThead({ children, colSpan }) {
   return (
@@ -21,8 +22,9 @@ function SecondThead({ children }) {
 }
 
 const HomePage = () => {
-  const { filteredCustomers, handleSearch } = useHomePage();
-
+  const { handleSearch, filteredCustomers } = useCustomers();
+  const navigate = useNavigate();
+  console.log(filteredCustomers);
   const customerItems =
     filteredCustomers &&
     filteredCustomers?.map((customer, i) => {
@@ -31,7 +33,9 @@ const HomePage = () => {
   return (
     <div className="min-w-full p-20 mt-6">
       <div>
-        <Button className="mr-2">Add user</Button>
+        <Button className="mr-2" onClick={() => navigate("/add")}>
+          Add user
+        </Button>
         <Button>Print column</Button>
       </div>
       <InputGroup className="max-w-xl mt-4">

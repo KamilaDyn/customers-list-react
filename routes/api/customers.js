@@ -28,7 +28,7 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const newItem = new Item(req.body);
+    const newItem = new Customer(req.body);
     const savedItem = await newItem.save();
     res.json(savedItem);
   } catch (err) {
@@ -48,18 +48,9 @@ router.put("/:id", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
-  console.log(req.params.id, Customer);
   Customer.deleteOne({ _id: req.params.id })
     .then((response) => res.json({ status: "success" }))
     .catch((error) => res.status(404).json({ status: false }));
-  // Customer.findById({ _id: req.params.id })
-  //   .then((customer) =>
-  //     customer.remove().then(() => res.json({ status: "success" }))
-  //   )
-  //   .catch((error) => {
-  //     console.log(error);
-  //     return res.status(404).json({ status: false });
-  //   });
 });
 
 module.exports = router;
