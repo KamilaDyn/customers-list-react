@@ -5,8 +5,13 @@ const router = express.Router();
 const Customer = require("../../models/Customers");
 
 router.get("/", async (req, res) => {
+  const perPage = 10;
+  const page = parseInt(req.query.page) || 1;
   try {
-    const items = await Customer.find().sort({ date: -1 });
+    const items = await Customer.find()
+      // .skip(perPage * page - perPage)
+      // .limit(perPage)
+      .sort({ name: "asc" });
     res.json(items);
   } catch (err) {
     res.status(500).send({ error: err.message });

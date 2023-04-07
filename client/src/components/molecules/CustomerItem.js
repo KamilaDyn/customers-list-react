@@ -1,13 +1,12 @@
-import { useDeleteItem } from "../../hooks/useDeleteItem";
 import { Button } from "react-bootstrap";
-
-function TableDiv({ children }) {
-  return <td className="p-2 text-md text-gray-700 hover:white">{children}</td>;
-}
+import { useDeleteItem } from "../../hooks/useDeleteItem";
+import { TableDiv } from "../atoms";
+import { useNavigate } from "react-router-dom";
 
 function CustomerItem({ customer }) {
   const onDelete = useDeleteItem();
   const {
+    _id,
     first_name,
     second_name,
     mobile_phone,
@@ -26,11 +25,11 @@ function CustomerItem({ customer }) {
     shipping_number,
     shipping_street,
   } = customer;
-
+  const navigate = useNavigate();
   return (
     <>
       <tr
-        id={customer._id}
+        id={_id}
         className="hover:bg-gray-300 focus:ring odd:bg-white even:bg-slate-50"
       >
         <TableDiv>{first_name}</TableDiv>
@@ -55,7 +54,9 @@ function CustomerItem({ customer }) {
         <TableDiv> {billing_state}</TableDiv>
         <TableDiv>{billing_country}</TableDiv>
         <TableDiv className="not-print ">
-          <Button variant="success">Edit</Button>
+          <Button variant="success" onClick={() => navigate(`edit/${_id}`)}>
+            Edit
+          </Button>
         </TableDiv>
 
         <TableDiv className="not-print ">

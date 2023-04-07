@@ -23,7 +23,7 @@ function FormInput({
         placeholder={placeholder}
         onChange={onChange}
         required={required || false}
-        defaultValue={value}
+        value={value || ""}
         disabled={disabled || false}
       />
     </Form.Group>

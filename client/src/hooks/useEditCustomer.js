@@ -201,6 +201,7 @@ export function useEditCustomer() {
         : singleCustomer.shipping_country || "",
     },
   ];
+  console.log(singleCustomer.billing_state);
 
   useEffect(() => {
     findOne();

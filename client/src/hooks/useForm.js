@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 export function useForm() {
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
@@ -24,6 +25,58 @@ export function useForm() {
     shipping_country: "",
   });
 
+  const { id } = useParams();
+
+  function findOne() {
+    axios
+      .get(`http://localhost:5000/api/customers/${id}`)
+      .then((response) => {
+        const {
+          _id,
+          first_name,
+          second_name,
+          mobile_phone,
+          work_phone,
+          email,
+          billing_street,
+          shipping_country,
+          shipping_zipcode,
+          billing_city,
+          billing_zipcode,
+          shipping_city,
+          billing_number,
+          billing_state,
+          billing_country,
+          shipping_state,
+          shipping_number,
+          shipping_street,
+        } = response.data;
+        setCustomerObject({
+          _id: _id,
+          first_name: first_name,
+          second_name: second_name,
+          email: email,
+          mobile_phone: mobile_phone,
+          work_phone: work_phone,
+          shipping_street: shipping_street,
+          shipping_number: shipping_number,
+          shipping_zipcode: shipping_zipcode,
+          shipping_city: shipping_city,
+          shipping_state: shipping_state,
+          shipping_country: shipping_country,
+          billing_street: billing_street,
+          billing_number: billing_number,
+          billing_zipcode: billing_zipcode,
+          billing_city: billing_city,
+          billing_state: billing_state,
+          billing_country: billing_country,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   function addCustomer(newCustomer) {
     axios
       .request({
@@ -42,7 +95,17 @@ export function useForm() {
 
       .catch((err) => console.log(err));
   }
-
+  function editCustomer(newCustomer) {
+    axios
+      .request({
+        method: "put",
+        url: `http://localhost:5000/api/customers/${id}`,
+        data: newCustomer,
+      })
+      .then((response) => console.log(response))
+      // .then(repsonse => this.props.history.push("/"))
+      .catch((error) => console.log(error));
+  }
   function handleChecked(e) {
     setIsChecked(e.target.checked);
     if (e.target.checked) {
@@ -85,7 +148,12 @@ export function useForm() {
     const form = e.currentTarget;
     const isFormValid = form.checkValidity();
     if (isFormValid) {
-      addCustomer(customerObject);
+      if (id) {
+        console.log("update");
+        editCustomer(customerObject);
+      } else {
+        addCustomer(customerObject);
+      }
     }
   }
   const personalData = [
@@ -124,7 +192,7 @@ export function useForm() {
       value: customerObject.work_phone,
     },
   ];
-  const addressFields = [
+  const billingAddressFields = [
     {
       text: "Street name",
       name: "billing_street",
@@ -135,7 +203,6 @@ export function useForm() {
       text: "Number",
       name: "billing_number",
       placeholder: "Enter home number",
-
       value: customerObject.billing_number,
     },
     {
@@ -214,12 +281,17 @@ export function useForm() {
         : customerObject.shipping_country,
     },
   ];
+  useEffect(() => {
+    if (id) {
+      findOne();
+    }
+  }, []);
 
   return {
     handleSubmit,
     handleChange,
     setCustomerObject,
-    addressFields,
+    billingAddressFields,
     isChecked,
     handleChecked,
     shippingAddressFields,

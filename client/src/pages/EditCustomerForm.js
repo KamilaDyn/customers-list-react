@@ -1,5 +1,5 @@
 import { FormTemplate } from "../components/templates";
-import { useEditCustomer } from "../hooks/useEditCustomer";
+import { useForm } from "../hooks/useForm";
 
 function EditCustomerForm() {
   const {
@@ -7,13 +7,21 @@ function EditCustomerForm() {
     billingAddressFields,
     personalData,
     phoneNumbers,
-  } = useEditCustomer();
+    handleChange,
+    isChecked,
+    handleChecked,
+    handleSubmit,
+  } = useForm();
   return (
     <FormTemplate
       shippingAddressFields={shippingAddressFields}
       billingAddressFields={billingAddressFields}
       personalData={personalData}
       phoneNumbers={phoneNumbers}
+      onChange={handleChange}
+      isChecked={isChecked}
+      handleChecked={handleChecked}
+      onSubmit={handleSubmit}
     />
   );
 }

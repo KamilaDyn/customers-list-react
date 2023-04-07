@@ -1,26 +1,20 @@
 import { Form, Button } from "react-bootstrap";
 
 import { FormInput } from "../molecules";
-import { useForm } from "../../hooks/useForm";
 
 function FormTemplate({
   shippingAddressFields,
   billingAddressFields,
   personalData,
   phoneNumbers,
+  onChange,
+  isChecked,
+  handleChecked,
+  onSubmit,
 }) {
-  const {
-    handleSubmit,
-    handleChange,
-    setCustomerObject,
-
-    isChecked,
-    handleChecked,
-  } = useForm();
-
   return (
     <div className="w-full  h-screen py-20 px-6 md:px-16 flex justify-center items-center">
-      <Form className="flex-1 max-w-7xl" onSubmit={(e) => handleSubmit(e)}>
+      <Form className="flex-1 max-w-7xl" onSubmit={(e) => onSubmit(e)}>
         <div className="grid md:grid-cols-2 gap-4 ">
           <div>
             <div className="text-sky-700 text-2xl py-4 md:py-4">
@@ -33,7 +27,7 @@ function FormTemplate({
                 name={name}
                 type={type || "text"}
                 placeholder={placeholder}
-                onChange={handleChange}
+                onChange={onChange}
                 value={value}
               />
             ))}
@@ -49,7 +43,7 @@ function FormTemplate({
                 name={name}
                 type="text"
                 placeholder={placeholder}
-                onChange={handleChange}
+                onChange={onChange}
                 value={value}
               />
             ))}
@@ -69,7 +63,7 @@ function FormTemplate({
                     name={name}
                     type="text"
                     placeholder={placeholder}
-                    onChange={handleChange}
+                    onChange={onChange}
                     value={value}
                   />
                 )
@@ -97,7 +91,7 @@ function FormTemplate({
                     name={name}
                     type="text"
                     placeholder={placeholder}
-                    onChange={handleChange}
+                    onChange={onChange}
                     value={value}
                     disabled={isChecked}
                   />
