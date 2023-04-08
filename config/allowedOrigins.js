@@ -1,3 +1,3 @@
-const allowedOrigins = ['http://localhost:3000'];
+const allowedOrigins = ['https://kamiladyn.github.io/customer-list-fe/'];
 
 module.exports = allowedOrigins;
