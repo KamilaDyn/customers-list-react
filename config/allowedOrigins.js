@@ -1,3 +1,3 @@
-const allowedOrigins = ['https://kamiladyn.github.io'];
+const allowedOrigins = ['https://customer-list-react.onrender.com'];
 
 module.exports = allowedOrigins;
