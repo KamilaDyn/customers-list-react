@@ -3,7 +3,7 @@
 ## See live
 
 
-## <a href="https://customers-list-react.herokuapp.com/">LIVE VIEW</a>
+## <a href="https://customer-list-react.onrender.com/">LIVE VIEW</a>
 This react app is connected with MongoDB.
 
 ![react-list](https://media.giphy.com/media/QvpezHL95ajynXYC4W/giphy.gif)
