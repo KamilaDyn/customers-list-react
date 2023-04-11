@@ -45,7 +45,7 @@ const HomePage = () => {
       <div className="flex flex-col mt-8">
         <div className="overflow-x-auto">
           <div className=" w-full inline-block align-middle">
-            <div className="hidden lg:block">
+            <div className="hidden lg:block ">
               {currentTableData?.length ? (
                 <div>
                   <div

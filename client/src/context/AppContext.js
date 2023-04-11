@@ -8,6 +8,7 @@ const AppContextProvider = ({ children }) => {
   const [customers, setCustomers] = useState([]);
   const [searchCustomer, setSearchCustomer] = useState("");
   const [pageSize, setPageSize] = useState(10);
+  const [error, setError] = useState("");
   function handleSearch(e) {
     setSearchCustomer(e.target.value.substr(0, 20));
   }
@@ -18,9 +19,10 @@ const AppContextProvider = ({ children }) => {
       .then((response) => {
         if (response.status === 200) {
           setCustomers(response.data);
+          setError("");
         }
       })
-      .catch((error) => console.error(error.message));
+      .catch((error) => setError(error.message));
   }
 
   useEffect(() => {
@@ -64,6 +66,7 @@ const AppContextProvider = ({ children }) => {
     getCustomers,
     pageSize,
     setPageSize,
+    error,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
