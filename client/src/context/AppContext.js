@@ -1,13 +1,13 @@
-import {useMemo, createContext, useEffect, useState} from 'react';
-import axios from 'axios';
-import {baseUrl} from '../config';
+import { useMemo, createContext, useEffect, useState } from "react";
+import axios from "axios";
+import { baseUrl } from "../config";
 
 export const AppContext = createContext([]);
-const PageSize = 10;
 
-const AppContextProvider = ({children}) => {
+const AppContextProvider = ({ children }) => {
   const [customers, setCustomers] = useState([]);
-  const [searchCustomer, setSearchCustomer] = useState('');
+  const [searchCustomer, setSearchCustomer] = useState("");
+  const [pageSize, setPageSize] = useState(10);
   function handleSearch(e) {
     setSearchCustomer(e.target.value.substr(0, 20));
   }
@@ -20,7 +20,7 @@ const AppContextProvider = ({children}) => {
           setCustomers(response.data);
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error.message));
   }
 
   useEffect(() => {
@@ -30,26 +30,26 @@ const AppContextProvider = ({children}) => {
     return (
       customers &&
       customers.filter(
-        ({second_name}) =>
+        ({ second_name }) =>
           second_name.toLowerCase().indexOf(searchCustomer.toLowerCase()) !== -1
       )
     );
   }, [searchCustomer, customers]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPageCount = Math.ceil(filteredCustomers.length / 10);
+  const totalPageCount = Math.ceil(filteredCustomers.length / pageSize);
 
   const currentTableData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
+    const firstPageIndex = (currentPage - 1) * pageSize;
+    const lastPageIndex = firstPageIndex + pageSize;
     if (filteredCustomers && filteredCustomers.length) {
       return filteredCustomers.slice(firstPageIndex, lastPageIndex);
     }
-  }, [currentPage, filteredCustomers]);
+  }, [currentPage, filteredCustomers, pageSize]);
 
   const handleChangePage = (action) => {
     setCurrentPage((prevPage) =>
-      action === 'next' ? prevPage + 1 : prevPage - 1
+      action === "next" ? prevPage + 1 : prevPage - 1
     );
   };
   const value = {
@@ -60,6 +60,10 @@ const AppContextProvider = ({children}) => {
     currentTableData,
     currentPage,
     totalPageCount,
+    setCustomers,
+    getCustomers,
+    pageSize,
+    setPageSize,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

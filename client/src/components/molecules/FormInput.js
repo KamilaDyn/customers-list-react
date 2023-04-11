@@ -18,6 +18,7 @@ function FormInput({
         {required && <Required />}
       </Form.Label>
       <Form.Control
+        className={`${type === "email" ? "lowercase" : "capitalize"}`}
         name={name}
         type={type}
         placeholder={placeholder}

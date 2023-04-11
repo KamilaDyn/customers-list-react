@@ -53,13 +53,15 @@ function CustomerItem({ customer }) {
         <TableDiv>{billing_city}</TableDiv>
         <TableDiv> {billing_state}</TableDiv>
         <TableDiv>{billing_country}</TableDiv>
-        <TableDiv className="not-print ">
-          <Button variant="success" onClick={() => navigate(`edit/${_id}`)}>
-            Edit
-          </Button>
+        <TableDiv noPrint="not-print">
+          <div className="flex w-full justify-center">
+            <Button variant="success" onClick={() => navigate(`edit/${_id}`)}>
+              Edit
+            </Button>
+          </div>
         </TableDiv>
 
-        <TableDiv className="not-print ">
+        <TableDiv noPrint="not-print">
           <Button variant="danger" onClick={onDelete.bind(this, customer._id)}>
             Delete
           </Button>

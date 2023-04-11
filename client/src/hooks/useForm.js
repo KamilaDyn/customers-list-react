@@ -1,32 +1,33 @@
-import {useEffect, useState} from 'react';
-import axios from 'axios';
-import {useNavigate, useParams} from 'react-router-dom';
-import {baseUrl} from '../config';
+import { useEffect, useContext, useState } from "react";
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import { baseUrl } from "../config";
+import { AppContext } from "../context/AppContext";
 
 export function useForm() {
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
+  const { id } = useParams();
+  const { getCustomers, setCustomers } = useContext(AppContext);
   const [customerObject, setCustomerObject] = useState({
-    first_name: '',
-    mobile_phone: '',
-    second_name: '',
-    email: '',
-    work_phone: '',
-    billing_street: '',
-    billing_number: '',
-    billing_zipcode: '',
-    billing_city: '',
-    billing_state: '',
-    billing_country: '',
-    shipping_street: '',
-    shipping_number: '',
-    shipping_zipcode: '',
-    shipping_city: '',
-    shipping_state: '',
-    shipping_country: '',
+    first_name: "",
+    mobile_phone: "",
+    second_name: "",
+    email: "",
+    work_phone: "",
+    billing_street: "",
+    billing_number: "",
+    billing_zipcode: "",
+    billing_city: "",
+    billing_state: "",
+    billing_country: "",
+    shipping_street: "",
+    shipping_number: "",
+    shipping_zipcode: "",
+    shipping_city: "",
+    shipping_state: "",
+    shipping_country: "",
   });
-
-  const {id} = useParams();
 
   function findOne() {
     axios
@@ -74,36 +75,41 @@ export function useForm() {
         });
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error.message);
       });
   }
 
   function addCustomer(newCustomer) {
     axios
       .request({
-        method: 'post',
-        url: 'http://localhost:5000/api/customers',
+        method: "post",
+        url: `${baseUrl}/api/customers`,
         data: newCustomer,
       })
       .then((response) => {
         if (response.status === 200) {
-          navigate('/');
+          getCustomers();
+          navigate("/");
         } else {
           console.warn(response.status.code);
         }
       })
 
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err.message));
   }
   function editCustomer(newCustomer) {
     axios
       .request({
-        method: 'put',
+        method: "put",
         url: `${baseUrl}/api/customers/${id}`,
         data: newCustomer,
       })
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
+      .then((response) => {
+        if (response.status === 200) {
+          getCustomers();
+        }
+      })
+      .catch((error) => console.error(error.message));
   }
   function handleChecked(e) {
     setIsChecked(e.target.checked);
@@ -138,7 +144,7 @@ export function useForm() {
     const name = e.target.name;
     const value = e.target.value;
     setCustomerObject((prevCustomer) => {
-      return {...prevCustomer, [name]: value};
+      return { ...prevCustomer, [name]: value };
     });
   }
 
@@ -148,7 +154,6 @@ export function useForm() {
     const isFormValid = form.checkValidity();
     if (isFormValid) {
       if (id) {
-        console.log('update');
         editCustomer(customerObject);
       } else {
         addCustomer(customerObject);
@@ -157,124 +162,126 @@ export function useForm() {
   }
   const personalData = [
     {
-      text: 'First name',
-      name: 'first_name',
-      placeholder: 'Enter first name',
+      text: "First name",
+      name: "first_name",
+      placeholder: "Enter first name",
       value: customerObject.first_name,
     },
     {
-      text: 'Last Name',
-      name: 'second_name',
-      placeholder: 'Enter last name',
+      text: "Last Name",
+      name: "second_name",
+      placeholder: "Enter last name",
       value: customerObject.second_name,
     },
     {
-      text: 'Email',
-      name: 'email',
-      placeholder: 'Enter email',
+      text: "Email",
+      name: "email",
+      placeholder: "Enter email",
       value: customerObject.email,
-      type: 'email',
+      type: "email",
     },
   ];
 
   const phoneNumbers = [
     {
-      text: 'Mobile phone',
-      name: 'mobile_phone',
-      placeholder: 'Enter mobile number phone',
+      text: "Mobile phone",
+      name: "mobile_phone",
+      placeholder: "Enter mobile number phone",
       value: customerObject.mobile_phone,
+      required: true,
     },
     {
-      text: 'Second work phone',
-      name: 'work_phone',
-      placeholder: 'Enter work number phone',
+      text: "Second work phone",
+      name: "work_phone",
+      placeholder: "Enter work number phone",
       value: customerObject.work_phone,
+      required: false,
     },
   ];
   const billingAddressFields = [
     {
-      text: 'Street name',
-      name: 'billing_street',
-      placeholder: 'Enter street',
+      text: "Street name",
+      name: "billing_street",
+      placeholder: "Enter street",
       value: customerObject.billing_street,
     },
     {
-      text: 'Number',
-      name: 'billing_number',
-      placeholder: 'Enter home number',
+      text: "Number",
+      name: "billing_number",
+      placeholder: "Enter home number",
       value: customerObject.billing_number,
     },
     {
-      text: 'Post code',
-      name: 'billing_zipcode',
-      placeholder: 'Enter post code',
+      text: "Post code",
+      name: "billing_zipcode",
+      placeholder: "Enter post code",
       value: customerObject.billing_zipcode,
     },
     {
-      text: 'City name',
-      name: 'billing_city',
-      placeholder: 'Enter city name',
+      text: "City name",
+      name: "billing_city",
+      placeholder: "Enter city name",
       value: customerObject.billing_city,
     },
     {
-      text: 'State',
-      name: 'billing_state',
-      placeholder: 'Enter state name',
+      text: "State",
+      name: "billing_state",
+      placeholder: "Enter state name",
       value: customerObject.billing_state,
     },
     {
-      text: 'Country',
-      name: 'billing_country',
-      placeholder: 'Enter country name',
+      text: "Country",
+      name: "billing_country",
+      placeholder: "Enter country name",
       value: customerObject.billing_country,
     },
   ];
   const shippingAddressFields = [
     {
-      text: 'Street name',
-      name: 'shipping_street',
-      placeholder: 'Enter street',
+      text: "Street name",
+      name: "shipping_street",
+      placeholder: "Enter street",
       value: isChecked
         ? customerObject.billing_street
         : customerObject.shipping_street,
     },
     {
-      text: 'Number',
-      name: 'shipping_number',
-      placeholder: 'Enter home number',
+      text: "Number",
+      name: "shipping_number",
+      placeholder: "Enter home number",
       value: isChecked
         ? customerObject.billing_number
         : customerObject.shipping_number,
     },
 
     {
-      text: 'Post code',
-      name: 'shipping_zipcode',
-      placeholder: 'Enter post code',
+      text: "Post code",
+      name: "shipping_zipcode",
+      placeholder: "Enter post code",
       value: isChecked
         ? customerObject.billing_zipcode
         : customerObject.shipping_zipcode,
     },
     {
-      text: 'City name',
-      name: 'shipping_city',
-      placeholder: 'Enter city name',
+      text: "City name",
+      name: "shipping_city",
+      placeholder: "Enter city name",
       value: isChecked
-        ? customerObject.shipping_street
+        ? customerObject.shipping_city
         : customerObject.shipping_city,
     },
     {
-      text: 'State',
-      name: 'shipping_state',
-      placeholder: 'Enter state name',
+      text: "State",
+      name: "shipping_state",
+      placeholder: "Enter state name",
       value: isChecked
         ? customerObject.billing_state
         : customerObject.shipping_state,
     },
     {
-      text: 'Country',
-      name: 'shipping_country',
-      placeholder: 'Enter country name',
+      text: "Country",
+      name: "shipping_country",
+      placeholder: "Enter country name",
       value: isChecked
         ? customerObject.billing_country
         : customerObject.shipping_country,
