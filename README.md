@@ -16,6 +16,15 @@ Project has 3 pages
 <li>Form to add new customer</li>
 <li>Form to edit customer</li>
 </ol>
+
+Tech stack
+
+<ul>
+<li>JavaScript</li>
+<li>React.js</li>
+<li>tailwindcss</li>
+<li>Node.js</li>
+</ul>
 <p>Api is deployed in <a href='https://customers-api-sgd5.onrender.com'>onrender</a></p>
 </div>
 
