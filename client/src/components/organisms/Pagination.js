@@ -55,12 +55,12 @@ function Pagination() {
         </PaginationBtn>
         <Form.Select
           aria-label="Select page size"
-          onChange={(e) => setPageSize(e.target.value)}
+          onChange={(e) => setPageSize(Number(e.target.value))}
         >
           <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="30">30</option>
-          <option value="50">50</option>
+          {filteredCustomers.length >= 10 && <option value="20">20</option>}
+          {filteredCustomers.length >= 20 && <option value="30">30</option>}
+          {filteredCustomers.length >= 30 && <option value="50">50</option>}
         </Form.Select>
       </div>
     </div>

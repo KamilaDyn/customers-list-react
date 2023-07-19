@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, InputGroup, Form, Spinner } from "react-bootstrap";
+import { Button, InputGroup, Form } from "react-bootstrap";
 import { AppContext } from "../context/AppContext";
 import { CustomeThead, SecondThead } from "../components/atoms";
 import { CustomerItem } from "../components/molecules";
@@ -20,7 +20,6 @@ const HomePage = () => {
     currentTableData?.map((customer, i) => {
       return <CustomerItem key={customer._id} customer={customer} />;
     });
-
   return (
     <div className="min-w-full sm:px-2 md:px-8 lg:px-10 2xl:px-12 py-8">
       <div>

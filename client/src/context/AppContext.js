@@ -9,6 +9,8 @@ const AppContextProvider = ({ children }) => {
   const [searchCustomer, setSearchCustomer] = useState("");
   const [pageSize, setPageSize] = useState(10);
   const [error, setError] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+
   function handleSearch(e) {
     setSearchCustomer(e.target.value.substr(0, 20));
   }
@@ -38,14 +40,16 @@ const AppContextProvider = ({ children }) => {
     );
   }, [searchCustomer, customers]);
 
-  const [currentPage, setCurrentPage] = useState(1);
   const totalPageCount = Math.ceil(filteredCustomers.length / pageSize);
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
-    if (filteredCustomers && filteredCustomers.length) {
+    if (filteredCustomers && filteredCustomers.length >= pageSize) {
       return filteredCustomers.slice(firstPageIndex, lastPageIndex);
+    } else {
+      setCurrentPage(1);
+      return filteredCustomers;
     }
   }, [currentPage, filteredCustomers, pageSize]);
 
