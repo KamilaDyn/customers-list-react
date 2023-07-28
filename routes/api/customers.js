@@ -4,7 +4,7 @@ const router = express.Router();
 
 const Customer = require("../../models/Customers");
 
-router.get("/", async (req, res) => {
+router.get("/api/customers", async (req, res) => {
   const perPage = 10;
   const page = parseInt(req.query.page) || 1;
   try {
@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/api/customers/:id", async (req, res) => {
   try {
     const item = await Customer.findById(req.params.id).sort({ date: -1 });
     if (item) {
@@ -31,7 +31,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/api/customers", async (req, res) => {
   try {
     const newItem = new Customer(req.body);
     const savedItem = await newItem.save();
@@ -42,7 +42,7 @@ router.post("/", async (req, res) => {
 });
 
 //update customer in db
-router.put("/:id", (req, res) => {
+router.put("/api/customers/:id", (req, res) => {
   Customer.updateOne({ _id: req.params.id }, req.body)
     .then(function () {
       Customer.findOne({ _id: req.params.id }).then((customer) => {
@@ -52,7 +52,7 @@ router.put("/:id", (req, res) => {
     .catch((err) => res.status(404).json({}));
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/api/customers/:id", (req, res) => {
   Customer.deleteOne({ _id: req.params.id })
     .then((response) => res.json({ status: "success" }))
     .catch((error) => res.status(404).json({ status: false }));
