@@ -26,8 +26,8 @@ function InfoComponent() {
                 </Card.Text>
                 <Card.Text>
                   Api is deployed under this link{" "}
-                  <Card.Link href="https://customers-api-sgd5.onrender.com/">
-                    https://customers-api-sgd5.onrender.com/
+                  <Card.Link href="https://customers-api-sgd5.onrender.com/api/customers">
+                    https://customers-api-sgd5.onrender.com/api/customers
                   </Card.Link>{" "}
                   Data is saved in MongoDB
                 </Card.Text>

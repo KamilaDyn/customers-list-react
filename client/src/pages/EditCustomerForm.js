@@ -1,3 +1,4 @@
+import { AcceptModal } from "../components/organisms";
 import { FormTemplate } from "../components/templates";
 import { useForm } from "../hooks/useForm";
 
@@ -13,16 +14,18 @@ function EditCustomerForm() {
     handleSubmit,
   } = useForm();
   return (
-    <FormTemplate
-      shippingAddressFields={shippingAddressFields}
-      billingAddressFields={billingAddressFields}
-      personalData={personalData}
-      phoneNumbers={phoneNumbers}
-      onChange={handleChange}
-      isChecked={isChecked}
-      handleChecked={handleChecked}
-      onSubmit={handleSubmit}
-    />
+    <>
+      <FormTemplate
+        shippingAddressFields={shippingAddressFields}
+        billingAddressFields={billingAddressFields}
+        personalData={personalData}
+        phoneNumbers={phoneNumbers}
+        onChange={handleChange}
+        isChecked={isChecked}
+        handleChecked={handleChecked}
+        onSubmit={handleSubmit}
+      />
+    </>
   );
 }
 

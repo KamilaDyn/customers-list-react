@@ -21,4 +21,4 @@ const logEvents = async (message, logFileName) => {
   }
 };
 
-module.exports = { logEvents };
+module.exports = logEvents;

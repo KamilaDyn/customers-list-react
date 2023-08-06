@@ -29,7 +29,7 @@ export function useEditCustomer() {
 
   function findOne() {
     axios
-      .get(`${baseUrl}/api/customers/${id}`)
+      .get(`${baseUrl}/${id}`)
       .then((response) => {
         const {
           _id,
