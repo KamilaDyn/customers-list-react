@@ -1,89 +1,57 @@
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useContext, useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { baseUrl } from "../config";
 import { AppContext } from "../context/AppContext";
 
+const initialCustomer = {
+  first_name: "",
+  mobile_phone: "",
+  second_name: "",
+  email: "",
+  work_phone: "",
+  billing_street: "",
+  billing_number: "",
+  billing_zipcode: "",
+  billing_city: "",
+  billing_state: "",
+  billing_country: "",
+  shipping_street: "",
+  shipping_number: "",
+  shipping_zipcode: "",
+  shipping_city: "",
+  shipping_state: "",
+  shipping_country: "",
+};
+
 export function useForm() {
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
   const { id } = useParams();
-  const { getCustomers, setCustomers } = useContext(AppContext);
-  const [customerObject, setCustomerObject] = useState({
-    first_name: "",
-    mobile_phone: "",
-    second_name: "",
-    email: "",
-    work_phone: "",
-    billing_street: "",
-    billing_number: "",
-    billing_zipcode: "",
-    billing_city: "",
-    billing_state: "",
-    billing_country: "",
-    shipping_street: "",
-    shipping_number: "",
-    shipping_zipcode: "",
-    shipping_city: "",
-    shipping_state: "",
-    shipping_country: "",
-  });
+  const { getCustomers, handleModalOpen } = useContext(AppContext);
+  const [customerObject, setCustomerObject] = useState(initialCustomer);
 
-  function findOne() {
+  function finUser() {
     axios
-      .get(`${baseUrl}/api/customers/${id}`)
+      .get(`${baseUrl}/${id}`)
       .then((response) => {
-        const {
-          _id,
-          first_name,
-          second_name,
-          mobile_phone,
-          work_phone,
-          email,
-          billing_street,
-          shipping_country,
-          shipping_zipcode,
-          billing_city,
-          billing_zipcode,
-          shipping_city,
-          billing_number,
-          billing_state,
-          billing_country,
-          shipping_state,
-          shipping_number,
-          shipping_street,
-        } = response.data;
-        setCustomerObject({
-          _id: _id,
-          first_name: first_name,
-          second_name: second_name,
-          email: email,
-          mobile_phone: mobile_phone,
-          work_phone: work_phone,
-          shipping_street: shipping_street,
-          shipping_number: shipping_number,
-          shipping_zipcode: shipping_zipcode,
-          shipping_city: shipping_city,
-          shipping_state: shipping_state,
-          shipping_country: shipping_country,
-          billing_street: billing_street,
-          billing_number: billing_number,
-          billing_zipcode: billing_zipcode,
-          billing_city: billing_city,
-          billing_state: billing_state,
-          billing_country: billing_country,
-        });
+        setCustomerObject(response.data);
       })
       .catch((error) => {
         console.error(error.message);
       });
   }
 
+  const findOneUser = useCallback(() => {
+    const user = finUser();
+    return user;
+  }, []);
+
   function addCustomer(newCustomer) {
     axios
       .request({
         method: "post",
-        url: `${baseUrl}/api/customers`,
+        url: baseUrl,
         data: newCustomer,
       })
       .then((response) => {
@@ -101,7 +69,7 @@ export function useForm() {
     axios
       .request({
         method: "put",
-        url: `${baseUrl}/api/customers/${id}`,
+        url: `${baseUrl}/${id}`,
         data: newCustomer,
       })
       .then((response) => {
@@ -115,26 +83,42 @@ export function useForm() {
     setIsChecked(e.target.checked);
     if (e.target.checked) {
       setCustomerObject((prevValue) => {
+        const {
+          billing_street,
+          billing_number,
+          billing_zipcode,
+          billing_city,
+          billing_state,
+          billing_country,
+        } = prevValue;
         return {
           ...prevValue,
-          shipping_street: prevValue.billing_street,
-          shipping_number: prevValue.billing_number,
-          shipping_zipcode: prevValue.billing_zipcode,
-          shipping_city: prevValue.billing_city,
-          shipping_state: prevValue.billing_state,
-          shipping_country: prevValue.billing_country,
+          shipping_street: billing_street,
+          shipping_number: billing_number,
+          shipping_zipcode: billing_zipcode,
+          shipping_city: billing_city,
+          shipping_state: billing_state,
+          shipping_country: billing_country,
         };
       });
     } else {
       setCustomerObject((prevValue) => {
+        const {
+          shipping_street,
+          shipping_number,
+          shipping_zipcode,
+          shipping_city,
+          shipping_state,
+          shipping_country,
+        } = prevValue;
         return {
           ...prevValue,
-          shipping_street: prevValue.shipping_street,
-          shipping_number: prevValue.shipping_number,
-          shipping_zipcode: prevValue.shipping_zipcode,
-          shipping_city: prevValue.shipping_city,
-          shipping_state: prevValue.shipping_state,
-          shipping_country: prevValue.shipping_country,
+          shipping_street: shipping_street,
+          shipping_number: shipping_number,
+          shipping_zipcode: shipping_zipcode,
+          shipping_city: shipping_city,
+          shipping_state: shipping_state,
+          shipping_country: shipping_country,
         };
       });
     }
@@ -153,9 +137,27 @@ export function useForm() {
     const form = e.currentTarget;
     const isFormValid = form.checkValidity();
     if (isFormValid) {
+      const { first_name, second_name } = customerObject;
       if (id) {
+        const modalTile = `Edit data for ${first_name} ${second_name} have been change `;
+        const description =
+          "Data was successfully edited, keep editing or come back to main page.";
+        const modalData = {
+          title: modalTile,
+          description: description,
+          button1: {
+            fn: () => {
+              navigate("/");
+              handleModalOpen(null);
+            },
+            text: "back to home page",
+          },
+          button2: { fn: () => handleModalOpen(null), text: "Edit more" },
+        };
         editCustomer(customerObject);
+        handleModalOpen(modalData);
       } else {
+        console.log(customerObject);
         addCustomer(customerObject);
       }
     }
@@ -287,11 +289,12 @@ export function useForm() {
         : customerObject.shipping_country,
     },
   ];
+
   useEffect(() => {
     if (id) {
-      findOne();
+      findOneUser();
     }
-  }, []);
+  }, [findOneUser, id]);
 
   return {
     handleSubmit,

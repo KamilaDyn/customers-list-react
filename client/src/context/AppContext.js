@@ -10,6 +10,7 @@ const AppContextProvider = ({ children }) => {
   const [pageSize, setPageSize] = useState(10);
   const [error, setError] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [modalData, setModalData] = useState(null);
 
   function handleSearch(e) {
     setSearchCustomer(e.target.value.substr(0, 20));
@@ -17,7 +18,7 @@ const AppContextProvider = ({ children }) => {
 
   async function getCustomers() {
     await axios
-      .get(`${baseUrl}/api/customers`)
+      .get(baseUrl)
       .then((response) => {
         if (response.status === 200) {
           setCustomers(response.data);
@@ -58,6 +59,10 @@ const AppContextProvider = ({ children }) => {
       action === "next" ? prevPage + 1 : prevPage - 1
     );
   };
+
+  function handleModalOpen(modalData) {
+    setModalData(modalData);
+  }
   const value = {
     customers,
     filteredCustomers,
@@ -71,6 +76,8 @@ const AppContextProvider = ({ children }) => {
     pageSize,
     setPageSize,
     error,
+    handleModalOpen,
+    modalData,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

@@ -4,7 +4,6 @@ import { TableDiv } from "../atoms";
 import { useNavigate } from "react-router-dom";
 
 function CustomerItem({ customer }) {
-  const onDelete = useDeleteItem();
   const {
     _id,
     first_name,
@@ -25,6 +24,8 @@ function CustomerItem({ customer }) {
     shipping_number,
     shipping_street,
   } = customer;
+  const deleteItem = useDeleteItem(customer);
+
   const navigate = useNavigate();
   return (
     <>
@@ -62,7 +63,7 @@ function CustomerItem({ customer }) {
         </TableDiv>
 
         <TableDiv noPrint="not-print">
-          <Button variant="danger" onClick={onDelete.bind(this, customer._id)}>
+          <Button variant="danger" onClick={() => deleteItem()}>
             Delete
           </Button>
         </TableDiv>

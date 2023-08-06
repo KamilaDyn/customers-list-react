@@ -4,7 +4,11 @@ import { Button, InputGroup, Form } from "react-bootstrap";
 import { AppContext } from "../context/AppContext";
 import { CustomeThead, SecondThead } from "../components/atoms";
 import { CustomerItem } from "../components/molecules";
-import { InfoComponent, Pagination } from "../components/organisms";
+import {
+  AcceptModal,
+  InfoComponent,
+  Pagination,
+} from "../components/organisms";
 import { useButton } from "../hooks/useButton";
 import { useDeleteItem } from "../hooks/useDeleteItem";
 
