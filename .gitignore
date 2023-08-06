@@ -1,4 +1,5 @@
-.env
-node_modules/
+server/.env
+server/node_modules/
 client/src/config.js
-logs/
+server/logs/
+node_modules
