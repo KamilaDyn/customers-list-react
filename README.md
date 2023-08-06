@@ -5,11 +5,17 @@
 ## Table of Contents
 
 1. [Introduction](#introduction)
-2. [Customer Table Description](#table-description)
+2. [Customer Table Description](#customer-table-description)
 3. [Setup](#setup)
 4. [Usage](#usage)
 
 ## Introduction
+
+<p>Repository contains two folders for server in node and client for react app.
+The idea to create thi project it was just for self-studying, just for practice react and node.js.
+Sometimes to times , project is updated. Repository, production branch is deployd in free trial <a href='https://render.com/ '> render hosting for developers</a></p>
+
+## Customer Table Description
 
 <div>
 </p>This repository contains two folder client and server.  Clean folder contains react app which has 
@@ -41,6 +47,7 @@ Before run server add .env file with environment PORT,  MONGODB_URI and TEST_MON
 
 ## Setup
 
+<div>
 To use this repository, follow these steps:
 
 1. Clone this repository:
@@ -71,6 +78,8 @@ go to server folder cd server
 npm run server
 ```
 
+</div>
+
 ## Usage
 
-Customer table it was self created and designed based on tailwindcss library. It is just for practice code skill, react and node tech.
+<p>Customer table it was self created and designed based on tailwindcss library. It is just for practice code skill, react and node tech.</p>
