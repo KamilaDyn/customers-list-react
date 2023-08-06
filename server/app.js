@@ -6,14 +6,9 @@ const customersRouter = require("./routes/api/customers");
 const config = require("./config/config");
 
 const app = express();
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-  })
-);
+app.use(cors());
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static("build"));
 }
 app.use(express.json());
 app.use("/api/customers", customersRouter);
