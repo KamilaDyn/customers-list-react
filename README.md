@@ -12,13 +12,13 @@
 ## Introduction
 
 <p>Repository contains two folders for server in node and client for react app.
-The idea to create thi project it was just for self-studying, just for practice react and node.js.
-Sometimes to times , project is updated. Repository, production branch is deployd in free trial <a href='https://render.com/ '> render hosting for developers</a></p>
+The idea to create this project was just for self-studying, practice react, and node.js.
+Sometimes to times, the project is updated. Repository, production branch is deployed in free trial <a href='https://render.com/ '> render hosting for developers</a></p>
 
 ## Customer Table Description
 
 <div>
-</p>This repository contains two folder client and server.  Clean folder contains react app which has 
+</p>This repository contains two folders client and server.  The client folder contains react app which has 
  3 pages</p>
 
 <div>
@@ -58,20 +58,20 @@ To use this repository, follow these steps:
 
 2. Install the required dependencies.
 
-in server and client folder
+in the server and client folder
 
 ```bash
  npm install
 ```
 
-3.  3.1 To run server in dev mode (with nodemon, which run changes).
-    Run mode will run client and server side
+3.  3.1 To run the server in dev mode (with nodemon, which run changes).
+    Run mode will run client and server-side
 
 ```bash
  npm run dev
 ```
 
-3.2 To run just server side
+3.2 To run just server-side
 go to server folder cd server
 
 ```bash
@@ -82,4 +82,11 @@ npm run server
 
 ## Usage
 
-<p>Customer table it was self created and designed based on tailwindcss library. It is just for practice code skill, react and node tech.</p>
+<p>Customer table was self-created and designed based on tailwindcss library. It is just for practice code skills, react and node tech.</p>
+
+
+
+https://github.com/KamilaDyn/customers-list-react/assets/45008285/cdfea071-fdb9-4699-8d06-15cd929b57a3
+
+
+
