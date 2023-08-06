@@ -1,0 +1,28 @@
+{
+  "name": "customer--menagement",
+  "version": "2.1.0",
+  "description": "Customer management in React",
+  "main": "index.js",
+  "scripts": {
+    "client-install": "cd ../client && npm install",
+    "start": "cross-env NODE_ENV=production node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "cross-env NODE_ENV=development nodemon index.js",
+    "client": "cd ../client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build:ui": "rm -rf build && cd ../client && npm run build && cp -r build ../server"
+  },
+  "author": "Kamila Dynysiuk",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.0.1",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "date-fns": "^2.29.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.17.1",
+    "mongoose": "^7.0.3",
+    "nodemon": "^2.0.2",
+    "uuid": "^9.0.0"
+  }
+}
