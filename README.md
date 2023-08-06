@@ -1,14 +1,19 @@
 # See live
 
-# <a href="https://customer-list-react.onrender.com/">LIVE VIEW</a>
+# <a href="https://customers-api-sgd5.onrender.com/">LIVE VIEW</a>
 
-This react app is connected with MongoDB.
+## Table of Contents
 
-![react-list](https://media.giphy.com/media/QvpezHL95ajynXYC4W/giphy.gif)
+1. [Introduction](#introduction)
+2. [Customer Table Description](#table-description)
+3. [Setup](#setup)
+4. [Usage](#usage)
 
-# Description
+## Introduction
 
-Project has 3 pages
+<div>
+</p>This repository contains two folder client and server.  Clean folder contains react app which has 
+ 3 pages</p>
 
 <div>
 <ol>
@@ -23,27 +28,48 @@ Tech stack
 <li>JavaScript</li>
 <li>React.js</li>
 <li>tailwindcss</li>
-<li>Node.js</li>
 </ul>
 <p>Api is deployed in <a href='https://customers-api-sgd5.onrender.com'>onrender</a></p>
 </div>
 
-Install dependencies for server
+<p> Server folder contains backend created in Node.js and connected with MongoDB</p>
 
-# 'npm install'
+<p><b>tech stack:</b> <span>Node.js</span></p>
+Before run server add .env file with environment PORT,  MONGODB_URI and TEST_MONGODB_URI for test (in future work) 
+</div>
 
-Install dependencies for client
+## Setup
 
-# 'npm run client-install'
+To use this repository, follow these steps:
 
-run the client and server concurrently
+1. Clone this repository:
 
-# 'npm run dev '
+```bash
+ git clone https://github.com/KamilaDyn/customers-list-react.git
+```
 
-run only the express server
+2. Install the required dependencies.
 
-# 'npm run server'
+in server and client folder
 
-run the react client only
+```bash
+ npm install
+```
 
-# 'npm run client'
+3.  3.1 To run server in dev mode (with nodemon, which run changes).
+    Run mode will run client and server side
+
+```bash
+ npm run dev
+```
+
+3.2 To run just server side
+go to server folder cd server
+
+```bash
+npm run server
+```
+
+## Usage
+
+Customer table it was self created and designed based on tailwindcss library. It is just for practice code skill, react and node tech.
