@@ -29,13 +29,14 @@ Tech stack
 <li>React.js</li>
 <li>tailwindcss</li>
 </ul>
-<p>Api is deployed in <a href='https://customers-api-sgd5.onrender.com'>onrender</a></p>
 </div>
 
 <p> Server folder contains backend created in Node.js and connected with MongoDB</p>
 
 <p><b>tech stack:</b> <span>Node.js</span></p>
 Before run server add .env file with environment PORT,  MONGODB_URI and TEST_MONGODB_URI for test (in future work) 
+<p>Api is deployed in <a href='https://customers-api-sgd5.onrender.com/api/customers'>onrender</a></p>
+
 </div>
 
 ## Setup
