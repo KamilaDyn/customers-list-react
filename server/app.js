@@ -7,9 +7,8 @@ const config = require("./config/config");
 
 const app = express();
 app.use(cors());
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("build"));
-}
+app.use(express.static("build"));
+
 app.use(express.json());
 app.use("/api/customers", customersRouter);
 
